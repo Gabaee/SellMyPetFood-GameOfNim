@@ -1,17 +1,137 @@
 import java.util.Scanner;
+import java.util.Random;
 public class Game {
+    private final Player player1;
+    private final Player player2;
+    private Player activePlayer;
+    private int currentPlayer;
+
+    public Game()
+    {
+        player1 = new Player();
+        player2 = new Player();
+    }
+
     public void play()
     {
+        Board.populate();
+        Board.setMaxGuess();
+
+        Random rand = new Random();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Welcome!!!");
 
-        Player[] players = new Player[2];
-        for (int i = 0; i < 2; i++)
+        currentPlayer = rand.nextInt(2) + 1;
+
+        if (currentPlayer == 1)
         {
-            System.out.println("Player " + (i + 1) + ", enter your name");
-            String name = sc.next();
-            players[i] = new Player(name);
+            activePlayer = player1;
+            System.out.println(player1.getName() + " is first");
         }
+        else
+        {
+            activePlayer = player2;
+            System.out.println(player2.getName() + " is first");
+        }
+        while (Board.getPieces() > 1)
+        {
+            int pieces = Board.getPieces();
+            int maxGuess = Board.getMaxGuess();
+            System.out.println("It is " + activePlayer.getName() + "'s turn.");
+            System.out.println("There are " + pieces + " pieces remaining.");
+            if (maxGuess == 1)
+            {
+                System.out.println("You can remove only " + maxGuess + " piece.");
+            }
+            else
+            {
+                System.out.println("You can remove up to " + maxGuess + " pieces.");
+            }
+            System.out.println("How many pieces would you like to remove?");
+            int guess = sc.nextInt();
+            if (!isValid(guess)) {
+                while (!isValid(guess)) {
+                    System.out.println("Sorry, that isn't a valid value.");
+                    System.out.println(
+                            "Please type a guess up to " + Board.getMaxGuess() + " pieces.");
+                    guess = sc.nextInt();
+                }
+            }
+            Board.removePieces(guess);
+            Board.setMaxGuess();
+            advanceTurn();
+        }
+        if (currentPlayer % 2 == 0)
+        {
+            player1.setScore();
+            System.out.println(player1.getName() + " won the round!");
+        }
+        else
+        {
+            player2.setScore();
+            System.out.println(player2.getName() + " won the round!");
+        }
+        boolean gameDone = isFinished();
+        if (!gameDone)
+        {
+            play();
+        }
+        else
+        {
+            System.out.println(player1.getName() + ": " + player1.getScore());
+            System.out.println(player2.getName() + ": " + player2.getScore());
+            if (player1.getScore() > player2.getScore())
+            {
+                System.out.println(player1.getName() + " won the game!");
+            }
+            else if (player2.getScore() > player1.getScore())
+            {
+                System.out.println(player2.getName() + " won the game!");
+            }
+            else
+            {
+                System.out.println("It's a tie!");
+            }
+        }
+    }
 
+    private boolean isFinished()
+    {
+        System.out.println("Would you like to play again? (y/n)");
+        Scanner sc = new Scanner(System.in);
+        String userInput = sc.nextLine();
+        while (!(userInput.trim().equalsIgnoreCase("Y") || userInput.trim().equalsIgnoreCase("N")))
+        {
+            System.out.println("Input was incorrect. Would you like to play again? (y/n)");
+            userInput = sc.nextLine();
+        }
+        if (userInput.trim().equalsIgnoreCase("Y"))
+        {
+            System.out.println("Response: Yes");
+            return false;
+        }
+        if (userInput.trim().equalsIgnoreCase("N"))
+        {
+            System.out.println("Response: No");
+            return true;
+        }
+        System.out.println("Code didn't work lol");
+        return true;
+    }
+
+    private void advanceTurn()
+    {
+        currentPlayer++;
+        if (currentPlayer % 2 == 1)
+        {
+            activePlayer = player1;
+        }
+        else
+        {
+            activePlayer = player2;
+        }
+    }
+    private boolean isValid(int num)
+    {
+        return num <= Board.getMaxGuess();
     }
 }
