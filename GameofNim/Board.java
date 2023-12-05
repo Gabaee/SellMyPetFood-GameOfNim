@@ -1,28 +1,32 @@
 import java.util.Random;
-public class Board {
+public class Board 
+{
     private static int pieces;
     private static int maxGuess;
 
-    public static void populate() {
-        Random pileSize = new Random();
-        pileSize.nextInt(50 - 10 + 1);
+    public static void populate() 
+    {
+        Random rand = new Random();
+        int pileSize = rand.nextInt(50 - 10 + 1) + 10;
+        pieces = pileSize;
+        System.out.println("Number of pieces: " + pieces);
     }
 
-    public static int getPieces() {
+    public static int getPieces() 
+    {
         return pieces;
     }
-
-    public static int getMaxGuess() {
-        return maxGuess;
-    }
-
-    public static void removePieces(int p) {
+    public static void removePieces(int p) 
+    {
         pieces -= p;
     }
-
+    public static int getMaxGuess() 
+    {
+        return maxGuess;
+    }
     public static void setMaxGuess()
     {
-        maxGuess = (int) (pieces / 2);
+        maxGuess = pieces / 2;
         if (pieces == 1) { maxGuess = 1; }
     }
 }
