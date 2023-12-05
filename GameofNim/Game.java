@@ -1,12 +1,13 @@
 import java.util.Scanner;
 import java.util.Random;
-public class Game {
+public class Game
+{
     private final Player player1;
     private final Player player2;
     private Player activePlayer;
     private int currentPlayer;
 
-    public Game()
+    public Game() // Game constructor
     {
         player1 = new Player();
         player2 = new Player();
@@ -14,14 +15,14 @@ public class Game {
 
     public void play()
     {
-        Board.populate();
-        Board.setMaxGuess();
-
+        Board.populate(); // Populates board with the random number of pieces
+        Board.setMaxGuess(); // Sets the max a player can guess
+        
         Random rand = new Random();
         Scanner sc = new Scanner(System.in);
 
-        currentPlayer = rand.nextInt(2) + 1;
-
+        currentPlayer = rand.nextInt(2) + 1; // Chooses first player
+        // First player logic
         if (currentPlayer == 1)
         {
             activePlayer = player1;
@@ -32,12 +33,13 @@ public class Game {
             activePlayer = player2;
             System.out.println(player2.getName() + " is first");
         }
-        while (Board.getPieces() > 1)
+        while (Board.getPieces() > 1) // Starts game
         {
             int pieces = Board.getPieces();
             int maxGuess = Board.getMaxGuess();
             System.out.println("It is " + activePlayer.getName() + "'s turn.");
             System.out.println("There are " + pieces + " pieces remaining.");
+            // Max guess stuff
             if (maxGuess == 1)
             {
                 System.out.println("You can remove only " + maxGuess + " piece.");
@@ -48,8 +50,8 @@ public class Game {
             }
             System.out.println("How many pieces would you like to remove?");
             int guess = sc.nextInt();
-            if (!isValid(guess)) {
-                while (!isValid(guess)) {
+            if (isValid(guess)) {
+                while (isValid(guess)) {
                     System.out.println("Sorry, that isn't a valid value.");
                     System.out.println(
                             "Please type a guess up to " + Board.getMaxGuess() + " pieces.");
@@ -60,7 +62,7 @@ public class Game {
             Board.setMaxGuess();
             advanceTurn();
         }
-        if (currentPlayer % 2 == 0)
+        if (currentPlayer % 2 == 0) // Winning logic
         {
             player1.setScore();
             System.out.println(player1.getName() + " won the round!");
@@ -71,7 +73,7 @@ public class Game {
             System.out.println(player2.getName() + " won the round!");
         }
         boolean gameDone = isFinished();
-        if (!gameDone)
+        if (!gameDone) 
         {
             play();
         }
@@ -94,7 +96,7 @@ public class Game {
         }
     }
 
-    private boolean isFinished()
+    private boolean isFinished() // Prompts user to play again
     {
         System.out.println("Would you like to play again? (y/n)");
         Scanner sc = new Scanner(System.in);
@@ -114,11 +116,10 @@ public class Game {
             System.out.println("Response: No");
             return true;
         }
-        System.out.println("Code didn't work lol");
         return true;
     }
 
-    private void advanceTurn()
+    private void advanceTurn() // Turn logic
     {
         currentPlayer++;
         if (currentPlayer % 2 == 1)
@@ -130,8 +131,8 @@ public class Game {
             activePlayer = player2;
         }
     }
-    private boolean isValid(int num)
+    private boolean isValid(int num) // Checks if the number guess is valid against the maximum guess
     {
-        return num <= Board.getMaxGuess();
+        return num > Board.getMaxGuess();
     }
 }
