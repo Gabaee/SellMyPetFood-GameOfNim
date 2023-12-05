@@ -101,17 +101,17 @@ public class Game
         System.out.println("Would you like to play again? (y/n)");
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
-        while (!(userInput.trim().equalsIgnoreCase("Y") || userInput.trim().equalsIgnoreCase("N")))
+        while (!(userInput.equalsIgnoreCase("Y") || userInput.equalsIgnoreCase("N")))
         {
             System.out.println("Input was incorrect. Would you like to play again? (y/n)");
             userInput = sc.nextLine();
         }
-        if (userInput.trim().equalsIgnoreCase("Y"))
+        if (userInput.equalsIgnoreCase("Y"))
         {
             System.out.println("Response: Yes");
             return false;
         }
-        if (userInput.trim().equalsIgnoreCase("N"))
+        if (userInput.equalsIgnoreCase("N"))
         {
             System.out.println("Response: No");
             return true;
