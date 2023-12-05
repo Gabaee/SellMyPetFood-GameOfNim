@@ -17,7 +17,7 @@ public class Game
     {
         Board.populate(); // Populates board with the random number of pieces
         Board.setMaxGuess(); // Sets the max a player can guess
-        
+
         Random rand = new Random();
         Scanner sc = new Scanner(System.in);
 
@@ -40,21 +40,14 @@ public class Game
             System.out.println("It is " + activePlayer.getName() + "'s turn.");
             System.out.println("There are " + pieces + " pieces remaining.");
             // Max guess stuff
-            if (maxGuess == 1)
-            {
-                System.out.println("You can remove only " + maxGuess + " piece.");
-            }
-            else
-            {
-                System.out.println("You can remove up to " + maxGuess + " pieces.");
-            }
+            if (maxGuess == 1) { System.out.println("You can remove only " + maxGuess + " piece."); }
+            else { System.out.println("You can remove up to " + maxGuess + " pieces."); }
             System.out.println("How many pieces would you like to remove?");
             int guess = sc.nextInt();
             if (isValid(guess)) {
                 while (isValid(guess)) {
                     System.out.println("Sorry, that isn't a valid value.");
-                    System.out.println(
-                            "Please type a guess up to " + Board.getMaxGuess() + " pieces.");
+                    System.out.println("Please type a guess up to " + Board.getMaxGuess() + " pieces.");
                     guess = sc.nextInt();
                 }
             }
@@ -73,26 +66,14 @@ public class Game
             System.out.println(player2.getName() + " won the round!");
         }
         boolean gameDone = isFinished();
-        if (!gameDone) 
-        {
-            play();
-        }
+        if (!gameDone) { play(); }
         else
         {
             System.out.println(player1.getName() + ": " + player1.getScore());
             System.out.println(player2.getName() + ": " + player2.getScore());
-            if (player1.getScore() > player2.getScore())
-            {
-                System.out.println(player1.getName() + " won the game!");
-            }
-            else if (player2.getScore() > player1.getScore())
-            {
-                System.out.println(player2.getName() + " won the game!");
-            }
-            else
-            {
-                System.out.println("It's a tie!");
-            }
+            if (player1.getScore() > player2.getScore()) { System.out.println(player1.getName() + " won the game!"); }
+            else if (player2.getScore() > player1.getScore()) { System.out.println(player2.getName() + " won the game!"); }
+            else { System.out.println("It's a tie!"); }
         }
     }
 
@@ -122,17 +103,9 @@ public class Game
     private void advanceTurn() // Turn logic
     {
         currentPlayer++;
-        if (currentPlayer % 2 == 1)
-        {
-            activePlayer = player1;
-        }
-        else
-        {
-            activePlayer = player2;
-        }
+        if (currentPlayer % 2 == 1) { activePlayer = player1; }
+        else { activePlayer = player2; }
     }
-    private boolean isValid(int num) // Checks if the number guess is valid against the maximum guess
-    {
-        return num > Board.getMaxGuess();
-    }
+    // Checks if the number guess is valid against the maximum guess
+    private boolean isValid(int num) { return num > Board.getMaxGuess(); }
 }
