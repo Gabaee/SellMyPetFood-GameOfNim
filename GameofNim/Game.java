@@ -91,11 +91,7 @@ public class Game
         {
             return true;
         }
-        if (userInput.equalsIgnoreCase("Y"))
-        {
-            return false;
-        }
-        return true;
+        return !userInput.equalsIgnoreCase("Y");
     }
 
     private void advanceTurn() // Turn logic
