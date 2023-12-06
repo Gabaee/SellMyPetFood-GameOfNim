@@ -87,10 +87,7 @@ public class Game
             System.out.println("Input was incorrect. Would you like to play again? (y/n)");
             userInput = sc.nextLine();
         }
-        if (userInput.equalsIgnoreCase("N"))
-        {
-            return true;
-        }
+        if (userInput.equalsIgnoreCase("N")) { return true; }
         return !userInput.equalsIgnoreCase("Y");
     }
 
