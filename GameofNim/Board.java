@@ -26,7 +26,7 @@ public class Board
     }
     public static void setMaxGuess()
     {
-        maxGuess = pieces / 2;
+        maxGuess = (pieces / 2);
         if (pieces == 1) { maxGuess = 1; }
     }
 }
