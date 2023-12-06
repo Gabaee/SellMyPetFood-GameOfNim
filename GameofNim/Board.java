@@ -16,7 +16,7 @@ public class Board
     {
         return pieces;
     }
-    public static void removePieces(int p) 
+    public static void setPieces(int p) 
     {
         pieces -= p;
     }
