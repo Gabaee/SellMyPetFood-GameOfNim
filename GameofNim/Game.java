@@ -71,31 +71,29 @@ public class Game
         {
             System.out.println(player1.getName() + ": " + player1.getScore());
             System.out.println(player2.getName() + ": " + player2.getScore());
-            if (player1.getScore() > player2.getScore()) { System.out.println(player1.getName() + " won the game!"); }
-            else if (player2.getScore() > player1.getScore()) { System.out.println(player2.getName() + " won the game!"); }
+            if (player1.getScore() > player2.getScore()) { System.out.println(player1.getName() + " won the Game of Nim!"); }
+            else if (player2.getScore() > player1.getScore()) { System.out.println(player2.getName() + " won the Game of Nim!"); }
             else { System.out.println("It's a tie!"); }
         }
     }
 
-    private boolean isFinished() // Prompts user to play again
+    private boolean isFinished() // Prompts user to play again, if not, it ends the game
     {
         System.out.println("Would you like to play again? (y/n)");
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
-        while (!(userInput.equalsIgnoreCase("Y") || userInput.equalsIgnoreCase("N")))
+        while (!(userInput.equalsIgnoreCase("n") || userInput.equalsIgnoreCase("y")))
         {
             System.out.println("Input was incorrect. Would you like to play again? (y/n)");
             userInput = sc.nextLine();
         }
-        if (userInput.equalsIgnoreCase("Y"))
-        {
-            System.out.println("Response: Yes");
-            return false;
-        }
         if (userInput.equalsIgnoreCase("N"))
         {
-            System.out.println("Response: No");
             return true;
+        }
+        if (userInput.equalsIgnoreCase("Y"))
+        {
+            return false;
         }
         return true;
     }
