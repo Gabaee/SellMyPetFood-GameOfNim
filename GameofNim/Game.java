@@ -51,7 +51,7 @@ public class Game
                     guess = sc.nextInt();
                 }
             }
-            Board.removePieces(guess);
+            Board.setPieces(guess);
             Board.setMaxGuess();
             advanceTurn();
         }
