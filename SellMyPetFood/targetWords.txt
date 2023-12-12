@@ -1,23 +1,44 @@
+pet
+pup
 dog
-dogs
-puppy
-leash
-kibble
-fetch
-training
-bark
-breed
-loyal
-paws
 cat
-cats
-kitty
+puppy
 kitten
-litter
+kitty
+fur
+paw
+tail
+leash
+collar
 meow
+bark
+whisker
 purr
-independent
-whiskers
-claws
-nap
-curious
+wag
+cuddle
+furry friend
+four-legged companion
+animal lover
+pet parent
+pet-friendly
+pet care
+adopt
+rescue
+treats
+playtime
+grooming
+veterinary
+pawsome
+woof
+feline
+canine
+litter
+scratching post
+fetch
+obedience
+training
+unconditional love
+pet adoption
+pet enthusiast
+animal
+lion
