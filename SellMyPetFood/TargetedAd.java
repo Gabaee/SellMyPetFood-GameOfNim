@@ -37,21 +37,19 @@ public class TargetedAd {
        String post = "";
        String targetWord = "";
        String username = "";
-       String advertisement = "";
        DataCollector stuff = new DataCollector();
-
+        //This is what the code does in invisible ink >>
        stuff.setData("socialMediaPosts.txt","targetWords.txt");
        while(!(post = stuff.getNextPost()).equals("NONE")){
             while(!(targetWord = stuff.getNextTargetWord()).equals("NONE")){
-                if(post.toLowerCase().indexOf(targetWord.toLowerCase()) != -1){
+                if(post.toLowerCase().indexOf(targetWord) != -1 && post.indexOf("hotdog") == -1){
                     username = post.substring(0, post.indexOf(" "));
                     usernames += username + " ";
-                    advertisement += post.substring(post.indexOf(" "));
                     break;
                 }
             }
-        stuff.prepareAdvertisement("advertisements.txt",usernames,advertisement);
-        System.out.println(usernames);
        }
+       stuff.prepareAdvertisement("username.txt",usernames,"You should buy my pet food!!! Or else...");
     }
+  
   }
