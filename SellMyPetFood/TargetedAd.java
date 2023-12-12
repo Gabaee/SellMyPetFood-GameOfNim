@@ -49,7 +49,7 @@ public class TargetedAd {
                 }
             }
        }
-       stuff.prepareAdvertisement("username.txt",usernames,"You should buy my pet food!!! Or else...");
+       stuff.prepareAdvertisement("advertisements.txt",usernames,"You should buy my pet food!!! Or else...");
     }
   
   }
